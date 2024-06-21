@@ -26,6 +26,8 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
 
     Route::get('/admin/event', [AdminController::class, 'event'])->name('admin.event');
+    Route::get('/admin/addEvent', [AdminController::class, 'addEvent'])->name('admin.addEvent');
+    Route::post('/admin/addEventPost', [AdminController::class, 'addEventPost'])->name('admin.addEventPost');
     
 });
 

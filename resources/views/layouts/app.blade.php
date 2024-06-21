@@ -110,27 +110,6 @@
 
         <!-- ========== Left Sidebar Start ========== -->
         <div class="leftside-menu">
-
-            <!-- Brand Logo Light -->
-            <a href="" class="logo logo-light">
-                <span class="logo-lg">
-                    <img src="{{ asset('assets/images/logo.png') }}" alt="logo">
-                </span>
-                <span class="logo-sm">
-                    <img src="{{ asset('assets/images/logo-sm.png') }}" alt="small logo">
-                </span>
-            </a>
-
-            <!-- Brand Logo Dark -->
-            <a href="" class="logo logo-dark">
-                <span class="logo-lg">
-                    <img src="{{ asset('assets/images/logo-dark.png') }}" alt="dark logo">
-                </span>
-                <span class="logo-sm">
-                    <img src="{{ asset('assets/images/logo-sm.png') }}" alt="small logo">
-                </span>
-            </a>
-
             <!-- Sidebar -left -->
             <div class="h-100" id="leftside-menu-container" data-simplebar>
                 <!--- Sidemenu -->
@@ -144,6 +123,12 @@
                             <a href="{{ route('admin.dashboard') }}" class="side-nav-link">
                                 <i class="ri-home-3-line"></i>
                                 <span> Dashboard </span>
+                            </a>
+                        </li>
+                        <li class="side-nav-item">
+                            <a href="{{ route('admin.addEvent') }}" class="side-nav-link">
+                                <i class="ri-home-3-line"></i>
+                                <span> Tambah Acara </span>
                             </a>
                         </li>
                         <li class="side-nav-item">
