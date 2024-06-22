@@ -127,33 +127,44 @@
                         </li>
                         <li class="side-nav-item">
                             <a href="{{ route('admin.addEvent') }}" class="side-nav-link">
-                                <i class="ri-home-3-line"></i>
-                                <span> Tambah Acara </span>
+                                <i class="ri-add-box-line"></i>
+                                <span> Tambah Perjalanan Dinas </span>
                             </a>
                         </li>
                         <li class="side-nav-item">
                             <a href="{{ route('admin.event') }}" class="side-nav-link">
-                                <i class="ri-home-3-line"></i>
-                                <span> Acara </span>
+                                <i class="ri-briefcase-fill"></i>
+                                <span> Perjalanan Dinas </span>
                             </a>
                         </li>
-                    @elseif (Auth::user()->level == 'user')
+                        <li class="side-nav-item">
+                            <a href="{{ route('admin.eventConfirm') }}" class="side-nav-link">
+                                <i class=" ri-send-plane-2-fill"></i>
+                                <span> Instruksi Tindak Lanjut </span>
+                            </a>
+                        </li>
+                        <li class="side-nav-item">
+                            <a href="{{ route('admin.eventImplementedShow') }}" class="side-nav-link">
+                                <i class=" ri-pass-valid-fill"></i>
+                                <span> Perjalanan Dinas Completed </span>
+                            </a>
+                        </li>
+                    @elseif (Auth::user()->role == 'pimpinan')
                     <li class="side-nav-item">
-                        <a href="{{ route('user.dashboard') }}" class="side-nav-link">
+                        <a href="{{ route('pimpinan.dashboard') }}" class="side-nav-link">
                             <i class="ri-home-3-line"></i>
                             <span> Dashboard </span>
                         </a>
                     </li>
                     <li class="side-nav-item">
-                        <a href="{{ route('user.addKasus') }}" class="side-nav-link">
-                            <i class="ri-home-3-line"></i>
-                            <span> Tambah Kasus </span>
+                        <a href="{{ route('pimpinan.event') }}" class="side-nav-link">
+                            <i class="ri-briefcase-fill"></i>
+                            <span> Perjalanan Dinas </span>
                         </a>
-                    </li>
                     <li class="side-nav-item">
-                        <a href="{{ route('user.kasus') }}" class="side-nav-link">
-                            <i class="ri-home-3-line"></i>
-                            <span> Data Kasus </span>
+                        <a href="{{ route('pimpinan.eventHistory') }}" class="side-nav-link">
+                            <i class="ri-briefcase-fill"></i>
+                            <span> History Perjalanan Dinas </span>
                         </a>
                     </li>
                     @endif
@@ -225,7 +236,7 @@
                         <div class="col-12 text-center">
                             <script>
                                 document.write(new Date().getFullYear())
-                            </script> Developed With Love By SMTechnology.id</b>
+                            </script> Badan Kesatuan Bangsa Dan Politik - Provinsi Kalimantan Selatan</b>
                         </div>
                     </div>
                 </div>

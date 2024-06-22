@@ -21,22 +21,22 @@
     <link href="{{ asset('assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
 </head>
 
-<body class="authentication-bg position-relative">
+<body class="authentication-bg position-relative" style="background-position: center">
     <div class="account-pages pt-2 pt-sm-5 pb-4 pb-sm-5 position-relative">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-xxl-8 col-lg-10">
                     <div class="card overflow-hidden">
                         <div class="row g-0">
-                            <div class="col-lg-6 d-none d-lg-block p-2">
-                                <img src="{{ asset('assets/images/logo (2).png') }}" alt=""
-                                    class="img-fluid rounded h-100" style="object-fit: cover">
+                            <div class="col-lg-6 d-none d-lg-flex justify-content-center align-items-center p-2">
+                                <img src="{{ asset('assets/images/logo (2).png') }}" alt="" class="img-fluid rounded" style="object-fit: cover; max-height: 400px;">
                             </div>
+                            
                             <div class="col-lg-6">
                                 <div class="d-flex flex-column h-100">
 
                                     <div class="p-4 my-auto">
-                                        <h4 class="fs-20">Sign In</h4>
+                                        <h4 class="fs-20">Badan Kesatuan Bangsa Dan Politik - Provinsi Kalimantan Selatan</h4>
                                         <p class="text-muted mb-3">Enter your email address and password to access
                                             account.
                                         </p>
@@ -91,7 +91,7 @@
         <span class="text-dark">
             <script>
                 document.write(new Date().getFullYear())
-            </script> © Velonic - Theme by Techzaa
+            </script>Badan Kesatuan Bangsa Dan Politik - Provinsi Kalimantan Selatan
         </span>
     </footer>
     <!-- Vendor js -->
