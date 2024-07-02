@@ -131,11 +131,13 @@ class AdminController extends Controller
     {
         Carbon::setLocale('id');
         $events = Event::where('status_tindak_lanjut', 'Sudah Ada Instruksi')
-        ->orderBy('created_at', 'desc')
-        ->get();
+            ->orWhere('status_tindak_lanjut', 'Belum Ada Instruksi')
+            ->orderBy('created_at', 'desc')
+            ->get();
 
         return view('admin.eventConfirm', compact('events'));
     }
+
     public function eventImplemented(Request $request)
     {
         // Validasi data yang dikirim dari form
@@ -158,5 +160,35 @@ class AdminController extends Controller
 
         // Redirect kembali ke halaman yang diinginkan dengan pesan sukses
         return redirect()->back()->with('success', 'Event implementation details updated successfully.');
+    }
+
+    public function addInstruction(Request $request)
+    {
+        // Validasi data yang dikirim dari form
+        $request->validate([
+            'id' => 'required|integer|exists:events,id',
+            'status_tindak_lanjut' => 'required|string',
+            'rencana_kegiatan' => 'required|string',
+            'rencana_waktu' => 'required|date_format:Y-m', // Sesuaikan dengan format bulan dan tahun (YYYY-MM)
+        ]);
+
+
+        // Cari event berdasarkan ID
+        $event = Event::findOrFail($request->id);
+
+        // Update data dengan instruksi dan rencana kegiatan
+        $event->status_tindak_lanjut = $request->status_tindak_lanjut;
+        $event->rencana_kegiatan = $request->rencana_kegiatan;
+
+        // Ganti format tanggal dari input month (YYYY-MM) menjadi format yang bisa disimpan di database
+        $rencana_waktu = $request->rencana_waktu . '-01'; // Tambahkan tanggal 01 untuk formatkan menjadi 'YYYY-MM-DD'
+        $event->rencana_waktu = $rencana_waktu;
+
+        // Simpan perubahan ke database
+        $event->save();
+
+
+        // Redirect kembali ke halaman yang diinginkan dengan pesan sukses
+        return redirect()->back()->with('success', 'Instruksi berhasil ditambahkan.');
     }
 }

@@ -3,9 +3,9 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Dashboard Admin || Sistem Padat Langsing</title>
+    <title>Dashboard Admin || Silahkan Perlu</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta content="Website Padat Langsing - Peduli Masalah Stunting" name="description" />
+    <meta content="Sistem Perjalanan Dinas" name="description" />
     <meta content="Smtehcbology.id" name="author" />
 
     <!-- App favicon -->
@@ -140,7 +140,7 @@
                         <li class="side-nav-item">
                             <a href="{{ route('admin.eventConfirm') }}" class="side-nav-link">
                                 <i class=" ri-send-plane-2-fill"></i>
-                                <span> Instruksi Tindak Lanjut </span>
+                                <span> Rencana Tindak Lanjut </span>
                             </a>
                         </li>
                         <li class="side-nav-item">
@@ -157,14 +157,9 @@
                         </a>
                     </li>
                     <li class="side-nav-item">
-                        <a href="{{ route('pimpinan.event') }}" class="side-nav-link">
-                            <i class="ri-briefcase-fill"></i>
-                            <span> Perjalanan Dinas </span>
-                        </a>
-                    <li class="side-nav-item">
                         <a href="{{ route('pimpinan.eventHistory') }}" class="side-nav-link">
                             <i class="ri-briefcase-fill"></i>
-                            <span> History Perjalanan Dinas </span>
+                            <span> Monitoring Perjalanan Dinas </span>
                         </a>
                     </li>
                     @endif

@@ -18,8 +18,9 @@
                             <th>Tanggal Pelaksanaan</th>
                             <th>Status Tindak Lanjut</th>
                             <th>Detail</th>
-                            <th>Tidak Lanjut</th>
-\                        </tr>
+                            <th>Rencana Tidak Lanjut</th>
+                            <th>Pelaksanaan Tidak Lanjut</th>
+                        </tr>
                     </thead>
                     <tbody>
                         @php
@@ -39,6 +40,7 @@
                                         <span class="text-success font-weight-bold">{{ $event->status_tindak_lanjut }}</span>
                                     @endif
                                 </td>
+
                                 <td>
                                     <button type="button" class="btn btn-info btn-sm" data-bs-toggle="modal"
                                         data-bs-target="#detail{{ $event->id }}">Detail</button>
@@ -89,10 +91,11 @@
                                                             <td>{{ $event->nomor_surat }}</td>
                                                         </tr>
                                                         <tr>
-                                                            <td>Nomor Surat</td>
+                                                            <td>Tanggal Surat</td>
                                                             <td>:</td>
-                                                            <td>{{ \Carbon\Carbon::parse($event->tanggal_surat)->translatedFormat('d F Y') }}
+                                                            <td>{{ $event->tanggal_surat }}
                                                             </td>
+
                                                         </tr>
                                                         <tr>
                                                             <td>Hasil Kegiatan</td>
@@ -114,13 +117,68 @@
                                 </td>
                                 <td>
                                     <button type="button" class="btn btn-info btn-sm" data-bs-toggle="modal"
-                                        data-bs-target="#tindaklanjut{{ $event->id }}">Instruksi</button>
+                                        data-bs-target="#instruction{{ $event->id }}">Tambahkan Rencana</button>
+
+                                    <div id="instruction{{ $event->id }}" class="modal fade" tabindex="-1"
+                                        role="dialog" aria-labelledby="standard-modalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title" id="standard-modalLabel">Tindak Lanjut
+                                                    </h4>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <h5>Pemberian Instruksi Tindak Lanjut Perjalanan Dinas</h5>
+                                                    <form action="{{ route('admin.addInstruction') }}" method="POST">
+                                                        @csrf
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <div class="form-group mb-2">
+                                                                    <input type="hidden" name="id"
+                                                                        class="form-control" id="id" required
+                                                                        value="{{ $event->id }}">
+                                                                    <input type="hidden" name="status_tindak_lanjut"
+                                                                        class="form-control" id="status_tindak_lanjut"
+                                                                        required value="Sudah Ada Instruksi">
+                                                                </div>
+                                                                <div class="form-group mb-2">
+                                                                    <div class="rencana_kegiatan">Rencana Kegiatan</div>
+                                                                    <input type="text" name="rencana_kegiatan"
+                                                                        id="rencana_kegiatan" class="form-control" required>
+                                                                </div>
+                                                                <div class="form-group mb-2">
+                                                                    <div class="rencana_waktu">Rencana Waktu Pelaksaan</div>
+                                                                    <input type="month" name="rencana_waktu"
+                                                                        id="rencana_waktu" class="form-control" required>
+                                                                </div>
+
+                                                                <button type="submit" class="btn btn-primary">Beri
+                                                                    Instruksi</button>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-light"
+                                                        data-bs-dismiss="modal">Close</button>
+                                                </div>
+                                            </div><!-- /.modal-content -->
+                                        </div><!-- /.modal-dialog -->
+                                    </div><!-- /.modal -->
+
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-info btn-sm" data-bs-toggle="modal"
+                                        data-bs-target="#tindaklanjut{{ $event->id }}">Pelaksanaan</button>
                                     <div id="tindaklanjut{{ $event->id }}" class="modal fade" tabindex="-1"
                                         role="dialog" aria-labelledby="standard-modalLabel" aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h4 class="modal-title" id="standard-modalLabel">Detail Instrksi Tindak
+                                                    <h4 class="modal-title" id="standard-modalLabel">Detail Instrksi
+                                                        Tindak
                                                         Lanjut
                                                     </h4>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
@@ -137,7 +195,9 @@
                                                         <tr>
                                                             <td>Rencana Waktu Kegiatan</td>
                                                             <td>:</td>
-                                                            <td>{{ $event->rencana_waktu }}</td>
+                                                            <td>
+                                                                {{ \Carbon\Carbon::parse($event->rencana_waktu)->translatedFormat('F Y') }}</td>
+                                                            </td>
                                                         </tr>
                                                     </table>
                                                     <hr>
@@ -145,12 +205,15 @@
                                                         @csrf
                                                         <div class="form-group mb-2">
                                                             <label for="pelaksanaan_kegiatan">Pelaksanaan Kegiatan</label>
-                                                            <input type="text" class="form-control" name="pelaksanaan_kegiatan" required >
-                                                            <input type="hidden" class="form-control" name="id" value="{{$event->id}}" required >
+                                                            <input type="text" class="form-control"
+                                                                name="pelaksanaan_kegiatan" required>
+                                                            <input type="hidden" class="form-control" name="id"
+                                                                value="{{ $event->id }}" required>
                                                         </div>
                                                         <div class="form-group mb-2">
                                                             <label for="pelaksanaan_waktu">Tanggal Pelaksanaan</label>
-                                                            <input type="date" class="form-control" name="pelaksanaan_waktu" required >
+                                                            <input type="date" class="form-control"
+                                                                name="pelaksanaan_waktu" required>
                                                         </div>
                                                         <button type="submit" class="btn btn-primary">Submit</button>
                                                     </form>
@@ -164,6 +227,7 @@
                                         </div><!-- /.modal-dialog -->
                                     </div><!-- /.modal -->
                                 </td>
+
                             </tr>
                         @endforeach
                     </tbody>

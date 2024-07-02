@@ -90,9 +90,9 @@
                                                             <td>{{ $event->nomor_surat }}</td>
                                                         </tr>
                                                         <tr>
-                                                            <td>Nomor Surat</td>
+                                                            <td>Tanggal Surat</td>
                                                             <td>:</td>
-                                                            <td>{{ \Carbon\Carbon::parse($event->tanggal_surat)->translatedFormat('d F Y') }}
+                                                            <td>{{ $event->tanggal_surat }}
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -113,7 +113,7 @@
                                                         <tr>
                                                             <td>Rencana Waktu</td>
                                                             <td>:</td>
-                                                            <td> {{ \Carbon\Carbon::parse($event->rencana_waktu)->translatedFormat('d F Y') }}</td>
+                                                            <td> {{ \Carbon\Carbon::parse($event->rencana_waktu)->translatedFormat('F Y') }}</td>
                                                         </tr>
                                                         <tr>
                                                             <td>Pelaksanaan Kegiatan</td>

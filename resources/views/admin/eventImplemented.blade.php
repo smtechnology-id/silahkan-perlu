@@ -5,7 +5,7 @@
     <div class="card">
         <div class="card-body">
             <h3>
-                Data Acara Perjalanan Dinas Selesai Ditindak Lanjuti / Comlpleted
+                Data Acara Perjalanan Dinas Selesai Ditindak Lanjuti / Completed
             </h3>
             <div class="table-responsive">
                 <table class="table table-borderless">
@@ -87,9 +87,9 @@
                                                             <td>{{ $event->nomor_surat }}</td>
                                                         </tr>
                                                         <tr>
-                                                            <td>Nomor Surat</td>
+                                                            <td>Tanggal Surat</td>
                                                             <td>:</td>
-                                                            <td>{{ \Carbon\Carbon::parse($event->tanggal_surat)->translatedFormat('d F Y') }}
+                                                            <td>{{ $event->tanggal_surat }}
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -105,22 +105,24 @@
                                                         <tr>
                                                             <td>Rencana Kegiatan</td>
                                                             <td>:</td>
-                                                            <td>{{$event->rencana_kegiatan}}</td>
+                                                            <td>{{ $event->rencana_kegiatan }}</td>
                                                         </tr>
                                                         <tr>
                                                             <td>Rencana Waktu</td>
                                                             <td>:</td>
-                                                            <td> {{ \Carbon\Carbon::parse($event->rencana_waktu)->translatedFormat('d F Y') }}</td>
+                                                            <td> {{ \Carbon\Carbon::parse($event->rencana_waktu)->translatedFormat('F Y') }}
+                                                            </td>
                                                         </tr>
                                                         <tr>
                                                             <td>Pelaksanaan Kegiatan</td>
                                                             <td>:</td>
-                                                            <td>{{$event->pelaksanaan_kegiatan}}</td>
+                                                            <td>{{ $event->pelaksanaan_kegiatan }}</td>
                                                         </tr>
                                                         <tr>
                                                             <td>Pelaksanaan Waktu</td>
                                                             <td>:</td>
-                                                            <td> {{ \Carbon\Carbon::parse($event->pelaksanaan_waktu)->translatedFormat('d F Y') }}</td>
+                                                            <td> {{ \Carbon\Carbon::parse($event->pelaksanaan_waktu)->translatedFormat('d F Y') }}
+                                                            </td>
                                                         </tr>
                                                     </table>
 
@@ -132,7 +134,14 @@
                                             </div><!-- /.modal-content -->
                                         </div><!-- /.modal-dialog -->
                                     </div><!-- /.modal -->
-
+                                    
+                                    <form action="{{ route('admin.deleteEventPost') }}" method="POST"
+                                        style="display:inline-block;">
+                                        @csrf
+                                        <input type="hidden" name="id" value="{{ $event->id }}">
+                                        <button type="submit" class="btn btn-danger btn-sm"><i
+                                                class="bi bi-trash-fill"></i></button>
+                                    </form>
                                 </td>
                             </tr>
                         @endforeach

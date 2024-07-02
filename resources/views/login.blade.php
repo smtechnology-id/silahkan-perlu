@@ -88,10 +88,10 @@
     <!-- end page -->
 
     <footer class="footer footer-alt fw-medium">
-        <span class="text-dark">
+        <span class="text-white">
             <script>
                 document.write(new Date().getFullYear())
-            </script>Badan Kesatuan Bangsa Dan Politik - Provinsi Kalimantan Selatan
+            </script> Badan Kesatuan Bangsa Dan Politik - Provinsi Kalimantan Selatan
         </span>
     </footer>
     <!-- Vendor js -->

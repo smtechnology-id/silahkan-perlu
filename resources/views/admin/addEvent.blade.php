@@ -52,12 +52,14 @@
                                 <div class="form-group mb-2">
                                     <label for="nomor_surat">Nomor Surat</label>
                                     <input type="text" name="nomor_surat" class="form-control" id="nomor_surat">
+                                    <label for="" class="text-small text-danger">*Kosongkan Jika Tidak Perlu</label>
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="form-group mb-2">
                                     <label for="tanggal_surat">Tanggal Surat</label>
                                     <input type="date" name="tanggal_surat" class="form-control" id="tanggal_surat">
+                                    <label for="" class="text-small text-danger">*Kosongkan Jika Tidak Perlu</label>
                                 </div>
                             </div>
                         </div>

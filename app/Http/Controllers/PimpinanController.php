@@ -53,10 +53,7 @@ class PimpinanController extends Controller
     public function eventHistory()
     {
         Carbon::setLocale('id');
-        $events = Event::where('status_tindak_lanjut', 'Tindak Lanjut Terlaksana')
-            ->orWhere('status_tindak_lanjut', 'Sudah Ada Instruksi')
-            ->orderBy('created_at', 'desc')
-            ->get();
+        $events = Event::all();
 
         return view('pimpinan.eventHistory', compact('events'));
     }

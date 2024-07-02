@@ -33,6 +33,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::post('/admin/addEventPost', [AdminController::class, 'addEventPost'])->name('admin.addEventPost');
     Route::post('/admin/delete-event', [AdminController::class, 'deleteEventPost'])->name('admin.deleteEventPost');
     Route::post('/admin/eventImplemented', [AdminController::class, 'eventImplemented'])->name('admin.eventImplemented');
+    Route::post('/admin/addInstruction', [AdminController::class, 'addInstruction'])->name('admin.addInstruction');
 
     
     Route::post('/admin/updateEventPost', [AdminController::class, 'updateEventPost'])->name('admin.updateEventPost');
