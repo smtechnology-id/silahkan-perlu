@@ -35,9 +35,11 @@
                                     {{ \Carbon\Carbon::parse($event->tanggal_selesai)->translatedFormat('d F Y') }}</td>
                                 <td>
                                     @if ($event->status_tindak_lanjut == 'Belum Ada Instruksi')
-                                        <span class="text-danger font-weight-bold">{{ $event->status_tindak_lanjut }}</span>
-                                    @else
-                                        <span class="text-success font-weight-bold">{{ $event->status_tindak_lanjut }}</span>
+                                        <span class="text-danger font-weight-bold">Belum Terlaksana</span>
+                                    @elseif($event->status_tindak_lanjut == 'Sudah Ada Instruksi')
+                                        <span class="text-warning font-weight-bold">Sudah Terlaksana</span>
+                                    @elseif($event->status_tindak_lanjut == 'Tindak Lanjut Terlaksana')
+                                        <span class="text-success font-weight-bold">Sudah Terlaksana</span>
                                     @endif
                                 </td>
 
@@ -124,13 +126,13 @@
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h4 class="modal-title" id="standard-modalLabel">Tindak Lanjut
+                                                    <h4 class="modal-title" id="standard-modalLabel">Rencana Tindak Lanjut
                                                     </h4>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                         aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <h5>Pemberian Instruksi Tindak Lanjut Perjalanan Dinas</h5>
+                                                    <h5>Instruksi Rencana Tindak Lanjut</h5>
                                                     <form action="{{ route('admin.addInstruction') }}" method="POST">
                                                         @csrf
                                                         <div class="row">
@@ -177,15 +179,14 @@
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h4 class="modal-title" id="standard-modalLabel">Detail Instrksi
-                                                        Tindak
+                                                    <h4 class="modal-title" id="standard-modalLabel">Pelaksanaan Tindak
                                                         Lanjut
                                                     </h4>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                         aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <h5>Instrksi Tindak Lanjut Dari Pimpinan</h5>
+                                                    <h5>Instruksi Pelaksanaan Tindak Lanjut</h5>
                                                     <table class="table-borderless">
                                                         <tr>
                                                             <td>Rencana Kegiatan</td>
@@ -196,43 +197,40 @@
                                                             <td>Rencana Waktu Kegiatan</td>
                                                             <td>:</td>
                                                             <td>
-                                                                {{ \Carbon\Carbon::parse($event->rencana_waktu)->translatedFormat('F Y') }}</td>
+                                                                {{ \Carbon\Carbon::parse($event->rencana_waktu)->translatedFormat('F Y') }}
                                                             </td>
-                                                        </tr>
-                                                    </table>
-                                                    <hr>
-                                                    <form action="{{ route('admin.eventImplemented') }}" method="POST">
-                                                        @csrf
-                                                        <div class="form-group mb-2">
-                                                            <label for="pelaksanaan_kegiatan">Pelaksanaan Kegiatan</label>
-                                                            <input type="text" class="form-control"
-                                                                name="pelaksanaan_kegiatan" required>
-                                                            <input type="hidden" class="form-control" name="id"
-                                                                value="{{ $event->id }}" required>
-                                                        </div>
-                                                        <div class="form-group mb-2">
-                                                            <label for="pelaksanaan_waktu">Tanggal Pelaksanaan</label>
-                                                            <input type="date" class="form-control"
-                                                                name="pelaksanaan_waktu" required>
-                                                        </div>
-                                                        <button type="submit" class="btn btn-primary">Submit</button>
-                                                    </form>
-
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-light"
-                                                        data-bs-dismiss="modal">Close</button>
-                                                </div>
-                                            </div><!-- /.modal-content -->
-                                        </div><!-- /.modal-dialog -->
-                                    </div><!-- /.modal -->
                                 </td>
-
                             </tr>
-                        @endforeach
-                    </tbody>
                 </table>
+                <hr>
+                <form action="{{ route('admin.eventImplemented') }}" method="POST">
+                    @csrf
+                    <div class="form-group mb-2">
+                        <label for="pelaksanaan_kegiatan">Pelaksanaan Kegiatan</label>
+                        <input type="text" class="form-control" name="pelaksanaan_kegiatan" required>
+                        <input type="hidden" class="form-control" name="id" value="{{ $event->id }}" required>
+                    </div>
+                    <div class="form-group mb-2">
+                        <label for="pelaksanaan_waktu">Tanggal Pelaksanaan</label>
+                        <input type="date" class="form-control" name="pelaksanaan_waktu" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+
             </div>
-        </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    </td>
+
+    </tr>
+    @endforeach
+    </tbody>
+    </table>
+    </div>
+    </div>
     </div>
 @endsection

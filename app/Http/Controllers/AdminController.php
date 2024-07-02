@@ -13,9 +13,10 @@ class AdminController extends Controller
     {
         $total = Event::all()->count();
         $belumAdaInstruksi = Event::where('status_tindak_lanjut', 'Belum Ada Instruksi')->count();
-        $sudahAdaInstruksi = Event::where('status_tindak_lanjut', 'Sudah Ada Instruksi')->count();
-        $terlaksana = Event::where('status_tindak_lanjut', 'Tindak Lanjut Terlaksana')->count();
-        return view('admin.dashboard', compact('terlaksana', 'belumAdaInstruksi', 'sudahAdaInstruksi', 'total'));
+        $sudahAdaInstruksi = Event::where('status_tindak_lanjut', 'Sudah Ada Instruksi')
+            ->orWhere('status_tindak_lanjut', 'Tindak Lanjut Terlaksana')
+            ->count();
+        return view('admin.dashboard', compact('belumAdaInstruksi', 'sudahAdaInstruksi', 'total'));
     }
 
     public function event()

@@ -26,7 +26,7 @@
                 <div class="float-end">
                     <i class="ri-wallet-2-line widget-icon"></i>
                 </div>
-                <h6 class="text-uppercase mt-0" title="Customers">Data Perjalanan Dinas Belum Ada Instruksi Tindak Lanjut</h6>
+                <h6 class="text-uppercase mt-0" title="Customers">DATA PERJALANAN DINAS BELUM ADA TINDAK LANJUT</h6>
                 <h2 class="my-2">{{$belumAdaInstruksi}} Data</h2>
             </div>
         </div>
@@ -38,8 +38,8 @@
                 <div class="float-end">
                     <i class="ri-group-2-line widget-icon"></i>
                 </div>
-                <h6 class="text-uppercase mt-0" title="Customers">Data Perjalanan Lengkap</h6>
-                <h2 class="my-2">{{$terlaksana}} Data</h2>
+                <h6 class="text-uppercase mt-0" title="Customers">DATA PERJALANAN DINAS SUDAH ADA TINDAK LANJUT</h6>
+                <h2 class="my-2">{{$sudahAdaInstruksi}} Data</h2>
             </div>
         </div>
     </div> <!-- end col-->

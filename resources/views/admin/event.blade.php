@@ -34,11 +34,11 @@
                                     {{ \Carbon\Carbon::parse($event->tanggal_selesai)->translatedFormat('d F Y') }}</td>
                                 <td>
                                     @if ($event->status_tindak_lanjut == 'Belum Ada Instruksi')
-                                        <span class="text-danger font-weight-bold">{{ $event->status_tindak_lanjut }}</span>
-                                    @else
-                                        {
-                                        <span class="text-success font-weight-bold">{{ $event->status_tindak_lanjut }}</span>
-                                        }
+                                        <span class="text-danger font-weight-bold">Belum Terlaksana</span>
+                                    @elseif($event->status_tindak_lanjut == 'Sudah Ada Instruksi')
+                                        <span class="text-warning font-weight-bold">Sudah Terlaksana</span>
+                                    @elseif($event->status_tindak_lanjut == 'Tindak Lanjut Terlaksana')
+                                        <span class="text-success font-weight-bold">Sudah Terlaksana</span>
                                     @endif
                                 </td>
                                 <td>
@@ -176,8 +176,7 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group mb-2">
-                                                                    <label
-                                                                        for="pelaksana_peserta">Pelaksana/Peserta</label>
+                                                                    <label for="pelaksana_peserta">Pelaksana/Peserta</label>
                                                                     <input type="text" name="pelaksana_peserta"
                                                                         class="form-control" id="pelaksana_peserta"
                                                                         required value="{{ $event->pelaksana_peserta }}">
@@ -236,9 +235,10 @@
                                         </div><!-- /.modal-dialog -->
                                     </div><!-- /.modal -->
 
-                                    <form action="{{route('admin.deleteEventPost')}}" method="POST" style="display:inline-block;">
+                                    <form action="{{ route('admin.deleteEventPost') }}" method="POST"
+                                        style="display:inline-block;">
                                         @csrf
-                                        <input type="hidden" name="id" value="{{$event->id}}">
+                                        <input type="hidden" name="id" value="{{ $event->id }}">
                                         <button type="submit" class="btn btn-danger btn-sm"><i
                                                 class="bi bi-trash-fill"></i></button>
                                     </form>

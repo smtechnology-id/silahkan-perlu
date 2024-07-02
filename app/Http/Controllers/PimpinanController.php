@@ -13,7 +13,9 @@ class PimpinanController extends Controller
     {
         $total = Event::all()->count();
         $belumAdaInstruksi = Event::where('status_tindak_lanjut', 'Belum Ada Instruksi')->count();
-        $sudahAdaInstruksi = Event::where('status_tindak_lanjut', 'Sudah Ada Instruksi')->count();
+        $sudahAdaInstruksi = Event::where('status_tindak_lanjut', 'Sudah Ada Instruksi')
+        ->where('status_tindak_lanjut', 'Tindak Lanjut Terlaksana')
+        ->count();
         $terlaksana = Event::where('status_tindak_lanjut', 'Tindak Lanjut Terlaksana')->count();
         return view('pimpinan.dashboard', compact('terlaksana', 'belumAdaInstruksi', 'sudahAdaInstruksi', 'total'));
     }

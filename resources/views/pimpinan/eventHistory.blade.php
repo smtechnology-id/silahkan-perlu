@@ -31,15 +31,15 @@
                                 <td>{{ $event->tujuan }}</td>
                                 <td>{{ \Carbon\Carbon::parse($event->tanggal_mulai)->translatedFormat('d F Y') }} -
                                     {{ \Carbon\Carbon::parse($event->tanggal_selesai)->translatedFormat('d F Y') }}</td>
-                                <td>
-                                    @if ($event->status_tindak_lanjut == 'Belum Ada Instruksi')
-                                        <span class="text-danger font-weight-bold">{{ $event->status_tindak_lanjut }}</span>
-                                    @else
-                                        
-                                        <span class="text-success font-weight-bold">{{ $event->status_tindak_lanjut }}</span>
-                                        
-                                    @endif
-                                </td>
+                                    <td>
+                                        @if ($event->status_tindak_lanjut == 'Belum Ada Instruksi')
+                                            <span class="text-danger font-weight-bold">Belum Terlaksana</span>
+                                        @elseif($event->status_tindak_lanjut == 'Sudah Ada Instruksi')
+                                            <span class="text-warning font-weight-bold">Sudah Terlaksana</span>
+                                        @elseif($event->status_tindak_lanjut == 'Tindak Lanjut Terlaksana')
+                                            <span class="text-success font-weight-bold">Sudah Terlaksana</span>
+                                        @endif
+                                    </td>
                                 <td>
                                     <button type="button" class="btn btn-info btn-sm" data-bs-toggle="modal"
                                         data-bs-target="#detail{{ $event->id }}">Detail</button>
